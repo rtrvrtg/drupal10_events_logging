@@ -1,0 +1,5 @@
+name: events logging
+type: module
+description: 'Provides an events logging system'
+core: 8.x
+package: Custom
