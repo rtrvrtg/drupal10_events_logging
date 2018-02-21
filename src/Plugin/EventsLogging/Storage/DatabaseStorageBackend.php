@@ -21,10 +21,14 @@ class DatabaseStorageBackend implements StorageBackendInterface {
    * {@inheritdoc}
    */
   public function save($data) {
-    // TODO: Implement save() method.
+    // placeholder method
   }
 
   public function deleteAll() {
-    // TODO: Implement deleteAll() method.
+    // placeholder method
+  }
+
+  public function delete($data) {
+    // placeholder method
   }
 }

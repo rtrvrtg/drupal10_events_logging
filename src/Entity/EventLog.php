@@ -361,7 +361,7 @@ class EventLog extends ContentEntityBase implements EventLogInterface {
         if ($plugin_id != 'database') {
           /** @var $plugin_definition StorageBackendInterface */
           $plugin_definition = $type->getDefinition($plugin_id);
-          $plugin_definition->save($this->values);
+          $plugin_definition->delete($this->values);
         } else {
           parent::delete();
         }

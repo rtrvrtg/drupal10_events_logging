@@ -15,4 +15,6 @@ interface StorageBackendInterface {
   public function save($data);
 
   public function deleteAll();
+
+  public function delete($data);
 }
