@@ -4,4 +4,4 @@ administer event log entities:
   restrict access: true
 
 view event log entities:
-  title: 'View Event log entities'
+  title: 'View Events Logging entities'

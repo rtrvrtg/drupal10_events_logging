@@ -1,4 +1,4 @@
-name: events logging
+name: Events Logging
 type: module
 description: 'Provides an events logging system'
 core: 8.x

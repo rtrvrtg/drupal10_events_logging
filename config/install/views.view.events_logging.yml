@@ -27,7 +27,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'view event log entities'
+          perm: 'view Events Logging entities'
       cache:
         type: tag
         options: {  }
@@ -711,7 +711,7 @@ display:
           entity_type: events_logging
           entity_field: created
           plugin_id: date
-      title: 'View event log'
+      title: 'View Events Logging log'
       header: {  }
       footer: {  }
       empty: {  }
@@ -738,7 +738,7 @@ display:
       path: admin/reports/view-event-log
       menu:
         type: normal
-        title: 'View Event Log'
+        title: 'View Events Logging log'
         description: ''
         expanded: false
         parent: system.admin_reports
