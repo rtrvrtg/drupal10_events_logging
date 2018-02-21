@@ -16,7 +16,7 @@ function events_logging_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.events_logging':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Event Log module') . '</p>';
+      $output .= '<p>' . t('Events Logging module') . '</p>';
       return $output;
 
     default:

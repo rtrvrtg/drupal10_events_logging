@@ -33,14 +33,21 @@ class LoadTest extends BrowserTestBase {
     parent::setUp();
     $this->user = $this->drupalCreateUser(['administer site configuration']);
     $this->drupalLogin($this->user);
+    $conf = $this->config('events_logging.config');
+    $conf->set('enabled_content_entities', ['node'])->save();
   }
 
   /**
    * Tests that the home page loads with a 200 response.
    */
-  public function testLoad() {
-    $this->drupalGet(Url::fromRoute('<front>'));
-    $this->assertSession()->statusCodeEquals(200);
+  public function testStandardEventsLogging() {
+    //create an Article Node
+    $node = $this->drupalCreateNode();
+    $node->title = 'Node title';
+    $node->type = 'article';
+    //checks that a log exists
+    $query = \Drupal::entityQuery('events_logging')->execute();
+    $this->assertNotEmpty($query);
   }
 
 }

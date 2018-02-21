@@ -10,7 +10,7 @@ dependencies:
 _core:
   default_config_hash: AuKiU-VEbAxZMMlvvQ4VjtPQohJ7Wr7g5K6JeM8SjZo
 id: events_logging
-label: 'Event log'
+label: 'Events Logging Events'
 module: views
 description: ''
 tag: ''

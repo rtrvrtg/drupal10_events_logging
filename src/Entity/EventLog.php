@@ -7,6 +7,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\events_logging\StorageBackendInterface;
 use Drupal\user\UserInterface;
 
 /**
@@ -333,5 +334,40 @@ class EventLog extends ContentEntityBase implements EventLogInterface {
 
     return $fields;
   }
+
+  public function save() {
+    $config = \Drupal::config('events_logging.config');
+    $plugins = $config->get('enabled_events_logging_plugins');
+    $type = \Drupal::service('plugin.manager.events_logging_storage_backend');
+    if (!is_null($plugins)) {
+      foreach ($plugins as $plugin_id) {
+        if ($plugin_id != 'database') {
+          /** @var $plugin_definition StorageBackendInterface */
+          $plugin_definition = $type->getDefinition($plugin_id);
+          $plugin_definition->save($this->values);
+        } else {
+          parent::save();
+        }
+      }
+    }
+  }
+
+  public function delete() {
+    $config = \Drupal::config('events_logging.config');
+    $plugins = $config->get('enabled_events_logging_plugins');
+    $type = \Drupal::service('plugin.manager.events_logging_storage_backend');
+    if (!is_null($plugins)) {
+      foreach ($plugins as $plugin_id) {
+        if ($plugin_id != 'database') {
+          /** @var $plugin_definition StorageBackendInterface */
+          $plugin_definition = $type->getDefinition($plugin_id);
+          $plugin_definition->save($this->values);
+        } else {
+          parent::delete();
+        }
+      }
+    }
+  }
+
 
 }

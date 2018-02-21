@@ -2,7 +2,7 @@ events_logging.config_form:
   path: '/admin/config/events_logging'
   defaults:
     _form: '\Drupal\events_logging\Form\ConfigForm'
-    _title: 'ConfigForm'
+    _title: 'Events Logging Configuration'
   requirements:
     _permission: 'access administration pages'
   options:

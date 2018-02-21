@@ -24,7 +24,7 @@ class StorageBackendPluginManager extends DefaultPluginManager implements Storag
    *   The module handler to invoke the alter hook with.
    */
   public function __construct(\Traversable $namespaces, CacheBackendInterface $cache_backend, ModuleHandlerInterface $module_handler) {
-    parent::__construct('Plugin/EventLog/Storage', $namespaces, $module_handler, StorageBackendInterface::class, StorageBackend::class);
+    parent::__construct('Plugin/EventsLogging/Storage', $namespaces, $module_handler, StorageBackendInterface::class, StorageBackend::class);
     $this->setCacheBackend($cache_backend, 'events_logging_storage_backend_plugins');
     $this->alterInfo('events_logging_storage_backend_info');
   }

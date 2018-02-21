@@ -1,7 +1,7 @@
 events_logging.config_form:
-  title: 'Event Log'
+  title: 'Events Logging'
   route_name: events_logging.config_form
-  description: 'Manage event log configuration'
+  description: 'Manage events logging configuration'
   parent: system.admin_config_system
   weight: 99
 

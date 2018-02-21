@@ -48,6 +48,13 @@ class ConfigForm extends ConfigFormBase {
       '#options' => $potential_entities['config_entities'],
       '#default_value' => $config->get('enabled_config_entities') ? $config->get('enabled_config_entities') : [],
     ];
+    $form['enabled_events_logging_plugins'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Enabled events logging plugins'),
+      '#description' => $this->t('Choose the events logging plugin'),
+      '#options' => $this->getPotentialPlugins(),
+      '#default_value' => $config->get('enabled_events_logging_plugins') ? $config->get('enabled_events_logging_plugins') : [],
+    ];
     $form['events_logging_max_records'] = [
       '#type' => 'select',
       '#title' => t('Eventlog messages to keep'),
@@ -88,6 +95,7 @@ class ConfigForm extends ConfigFormBase {
       ->set('enabled_content_entities', $form_state->getValue('enabled_content_entities'))
       ->set('enabled_config_entities', $form_state->getValue('enabled_config_entities'))
       ->set('max_records', $form_state->getValue('events_logging_max_records'))
+      ->set('enabled_events_logging_plugins',$form_state->getValue('enabled_events_logging_plugins'))
       ->save();
   }
 
@@ -115,5 +123,15 @@ class ConfigForm extends ConfigFormBase {
       'content_entities' => $content_entity_types,
       'config_entities' => $config_entity_types
     ];
+  }
+
+  private function getPotentialPlugins(){
+    $definitions = [];
+    $type = \Drupal::service('plugin.manager.events_logging_storage_backend');
+    $plugin_definitions = $type->getDefinitions();
+    foreach($plugin_definitions as $machine_name => $definition){
+        $definitions[$machine_name] = $definition['label'];
+    }
+    return $definitions;
   }
 }
