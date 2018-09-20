@@ -10,7 +10,7 @@ use Drupal\Tests\BrowserTestBase;
  *
  * @group events_logging
  */
-class LoadTest extends BrowserTestBase {
+class EventsLoggingFunctionalTest extends BrowserTestBase {
 
   /**
    * Modules to enable.
@@ -38,7 +38,7 @@ class LoadTest extends BrowserTestBase {
   }
 
   /**
-   * Tests that the home page loads with a 200 response.
+   * Tests the standard events log
    */
   public function testStandardEventsLogging() {
     //create an Article Node
@@ -46,8 +46,22 @@ class LoadTest extends BrowserTestBase {
     $node->title = 'Node title';
     $node->type = 'article';
     //checks that a log exists
-    $query = \Drupal::entityQuery('events_logging')->execute();
+    $query = \Drupal::entityQuery('events_logging')
+      ->condition('type','node_insert')
+      ->execute();
     $this->assertNotEmpty($query);
+    // create a new taxonomy term (not enabled for logging)
+    $term = \Drupal::entityTypeManager()
+      ->getStorage('taxonomy_term')
+      ->create([
+        'name' => 'test_events_logging',
+        'vid' => 'tags'
+      ]);
+    $term->save();
+    $query = \Drupal::entityQuery('events_logging')
+      ->condition('type','taxonomy_term_insert')
+      ->execute();
+    $this->assertEmpty($query);
   }
 
 }
