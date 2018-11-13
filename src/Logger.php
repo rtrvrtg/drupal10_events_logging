@@ -106,8 +106,9 @@ class Logger implements LoggerInterface {
   /**
    * @param \Drupal\Core\Entity\EntityInterface $entity
    * @param $type
+   * @param $description
    */
-  public function createLogEntity(EntityInterface $entity, $type) {
+  public function createLogEntity(EntityInterface $entity, $type, $description=NULL) {
     $values = [];
     $values['type'][0]['value'] = $entity->getEntityType()->id() . '_' . $type;
     $values['operation'][0]['value'] = $type;
@@ -120,7 +121,7 @@ class Logger implements LoggerInterface {
       $title = isset($entity->toArray()['name'][0]['value']) ? $entity->toArray()['name'][0]['value'] : '';
     }
     $values['name'][0]['value'] = $title;
-    $values['description'][0]['value'] =  $this->getLogDescription($entity,$type);
+    $values['description'][0]['value'] = $description ? $description : $this->getLogDescription($entity,$type);
     $values['ip'][0]['value'] = $this->request->getCurrentRequest()->getClientIp();
     if(isset($entity_arr['title'][0]['value'])){
       $title = $entity_arr['title'][0]['value'];
