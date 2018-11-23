@@ -1,3 +1,2 @@
-events_logging:
 enabled_events_logging_plugins:
-  database: database
+  - database

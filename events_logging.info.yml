@@ -3,3 +3,6 @@ type: module
 description: 'Provides a powerful and extensible events logging system'
 core: 8.x
 package: Custom
+
+dependencies:
+  - views
