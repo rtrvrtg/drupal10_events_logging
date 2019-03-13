@@ -177,7 +177,7 @@ class EventLog extends ContentEntityBase implements EventLogInterface {
       ->setLabel(t('Name'))
       ->setDescription(t('The name of the Event log entity.'))
       ->setSettings([
-        'max_length' => 50,
+        'max_length' => 255,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')
