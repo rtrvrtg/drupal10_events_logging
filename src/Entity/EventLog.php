@@ -239,7 +239,7 @@ class EventLog extends ContentEntityBase implements EventLogInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['path'] = BaseFieldDefinition::create('string')
+    $fields['logpath'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Path'))
       ->setDescription(t('Current path.'))
       ->setSetting('max_length', 255)

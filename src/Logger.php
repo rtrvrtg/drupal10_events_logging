@@ -112,7 +112,7 @@ class Logger implements LoggerInterface {
     $values = [];
     $values['type'][0]['value'] = $entity->getEntityType()->id() . '_' . $type;
     $values['operation'][0]['value'] = $type;
-    $values['path'][0]['value'] = $this->request->getCurrentRequest()->getRequestUri();
+    $values['logpath'][0]['value'] = $this->request->getCurrentRequest()->getRequestUri();
     $values['ref_numeric'][0]['value'] = $entity->id();
     $entity_arr = $entity->toArray();
     //manage title for standard nodes and name for custom content entities
