@@ -23,10 +23,10 @@ use Drupal\user\UserInterface;
  *     "list_builder" = "Drupal\events_logging\EventLogListBuilder",
  *     "views_data" = "Drupal\events_logging\Entity\EventLogViewsData",
  *     "form" = {
- *       "default" = "Drupal\events_logging\Form\EventLogForm",
- *       "add" = "Drupal\events_logging\Form\EventLogForm",
- *       "edit" = "Drupal\events_logging\Form\EventLogForm",
- *       "delete" = "Drupal\events_logging\Form\EventLogDeleteForm",
+ *       "default" = "Drupal\events_logging\Form\EventsLoggingLogForm",
+ *       "add" = "Drupal\events_logging\Form\EventsLoggingForm",
+ *       "edit" = "Drupal\events_logging\Form\EventsLoggingForm",
+ *       "delete" = "Drupal\events_logging\Form\EventsLoggingDeleteForm",
  *     },
  *     "access" = "Drupal\events_logging\EventLogAccessControlHandler",
  *     "route_provider" = {
