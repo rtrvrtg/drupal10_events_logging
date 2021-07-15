@@ -2,8 +2,12 @@
 
 namespace Drupal\events_logging\Form;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\ContentEntityForm;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 
 /**
  * Form controller for Event log edit forms.
@@ -11,6 +15,26 @@ use Drupal\Core\Form\FormStateInterface;
  * @ingroup events_logging
  */
 class EventsLoggingForm extends ContentEntityForm {
+
+  /**
+   * The Messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
+   * EventsLoggingForm constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface|NULL $entity_type_bundle_info
+   * @param \Drupal\Component\Datetime\TimeInterface|NULL $time
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   */
+  public function __construct(EntityRepositoryInterface $entity_repository, EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL, TimeInterface $time = NULL, MessengerInterface $messenger) {
+    parent::__construct($entity_repository, $entity_type_bundle_info, $time);
+    $this->messenger = $messenger;
+  }
 
   /**
    * {@inheritdoc}
@@ -34,13 +58,13 @@ class EventsLoggingForm extends ContentEntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Event log.', [
+        $this->messenger->addMessage($this->t('Created the %label Event log.', [
           '%label' => $entity->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label Event log.', [
+        $this->messenger->addMessage($this->t('Saved the %label Event log.', [
           '%label' => $entity->label(),
         ]));
     }

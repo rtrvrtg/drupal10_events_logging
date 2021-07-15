@@ -1,8 +1,9 @@
 name: Events Logging
 type: module
 description: 'Provides a powerful and extensible events logging system'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: Custom
+configure: events_logging.config_form
 
 dependencies:
   - views
