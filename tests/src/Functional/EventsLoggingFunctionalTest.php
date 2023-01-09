@@ -20,6 +20,11 @@ class EventsLoggingFunctionalTest extends BrowserTestBase {
   public static $modules = ['events_logging'];
 
   /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
+
+  /**
    * A user with permission to administer site configuration.
    *
    * @var \Drupal\user\UserInterface
